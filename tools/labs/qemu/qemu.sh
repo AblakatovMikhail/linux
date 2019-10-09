@@ -15,7 +15,7 @@ case $ARCH in
 	;;
 esac
 
-echo info chardev | nc -U -l qemu.mon | egrep --line-buffered -o "/dev/pts/[0-9]*" | xargs -I PTS ln -fs PTS serial.pts &
-$qemu "$@" -monitor unix:qemu.mon
+echo info chardev | nc -u -l -p 4555 | egrep --line-buffered -o "/dev/pts/[0-9]*" | xargs -I PTS ln -fs PTS serial.pts &
+$qemu "$@" -serial udp::4555
 rm qemu.mon 
 rm serial.pts
