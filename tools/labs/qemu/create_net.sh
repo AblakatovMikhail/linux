@@ -32,6 +32,4 @@ sudo /sbin/ip link set dev "$device" down
 sudo /sbin/ip address add $subnet.1/24 dev "$device"
 sudo /sbin/ip link set dev "$device" up
 
-mkdir -p $PWD/tftp
-
-sudo dnsmasq --enable-tftp --tftp-root=$PWD/tftp --no-resolv --no-hosts --bind-interfaces --interface $device -F $subnet.2,$subnet.20 -x dnsmasq.pid || true
+sudo dnsmasq --enable-tftp --tftp-root=/srv/tftp --no-resolv --no-hosts --bind-interfaces --interface $device -F $subnet.2,$subnet.20 -x dnsmasq.pid || true
