@@ -39,8 +39,8 @@ $(KCONFIG): qemu/kernel_config.x86
 zImage: $(ZIMAGE)
 
 $(ZIMAGE): $(KCONFIG)
-	$(MAKE) -C $(KDIR)
-	$(MAKE) -C $(KDIR) modules
+	$(MAKE) -C $(KDIR) -j4
+	$(MAKE) -C $(KDIR) -j4 modules
 
 .modinst: $(ZIMAGE) $(YOCTO_IMAGE)
 	mkdir $(TEMPDIR)
